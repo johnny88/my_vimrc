@@ -9,78 +9,35 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'isruslan/vim-es6'
 
-Plugin 'rust-lang/rust.vim'
-Plugin 'cespare/vim-toml'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-"--- SPACING AND TABS ---
-set tabstop=2                " number of visual spaces per TABa
-set softtabstop=2            " number of spaces in tab when editing
-set expandtab                " tabs are spaces
 
-"--- UI CONFIG ---
-set number                   " show line numbers
-filetype indent on           " load filetype-specific indent filesa
-set wildmenu                 " visual autocomplete for command menu
-set lazyredraw               " redraw only when we need to.
-set showmatch                " highlight matching [{()}]
+syntax enable           " enable syntax processing
+set tabstop=4 shiftwidth=4 shiftwidth=4 noexpandtab
+set number              " show line numbers
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
 
-
-"--- SEARCH ---
-"set incsearch                " search as characters are entered
-"set hlsearch                 " highlight matches
-"" turn off search highlight
-nnoremap <leader><space> :nohlsearch<CR>
-
-"--- MOVEMENT ---
-"" move vertically by visual line
-nnoremap j gj
-nnoremap k gk
-
-" move to beginning/end of line
-nnoremap B ^
-nnoremap E $
-"
-" " $/^ doesn't do anything
-nnoremap $ <nop>
-nnoremap ^ <nop>
-"
-" " highlight last inserted text
-nnoremap gV `[v`]
-"
-"--- LEADER SHORTCUT ---
-let mapleader=","       " leader is comma
-"
-" jk is escape
-inoremap jk <esc>
-"
-" toggle gundo
-nnoremap <leader>u :GundoToggle<CR>a
-
-" edit vimrc/zshrc and load vimrc bindings
-nnoremap <leader>ev :vsp $MYVIMRC<CR>
-nnoremap <leader>ez :vsp ~/.zshrc<CR>
-nnoremap <leader>sv :source $MYVIMRC<CR>
-
+nnoremap <F9> :tabnew ./<CR>
+nnoremap <F3> :tabclose<CR>
 nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
-nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
-nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
+inoremap <F9> <Esc>:tabnew ./<CR>
+inoremap <F3> <Esc>:tabclose<CR>
+inoremap <F7> :tabprevious<CR>
+inoremap <F8> :tabnext<CR>
+nnoremap <C-/> <leader>c <CR>
 
-nnoremap <leader>nt :tabedit
-nnoremap <leader>ct :tabclose<CR>
-" turn off search highlight
-nnoremap <leader><space> :nohlsearch<CR>
+" include jsx in .js files
+let g:jsx_ext_required = 0
+
+" jk is escape
+inoremap jk <esc>
+set clipboard+=unnamed
