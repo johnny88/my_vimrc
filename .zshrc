@@ -83,3 +83,12 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+if [ -z "$SSH_AUTH_SOCK" ] ; then
+	eval `ssh-agent -s`
+    ssh-add
+fi
+export LD_LIBRARY_PATH=~/hivemind/hivemind-client-lib-wrapper-node-js/lib/linux64/
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
+alias wint-dev='docker-compose --project-name wintermute-dev -f ~/wintermute/wintermute-ecosystem/docker-compose.yml -f ~/wintermute/wintermute-ecosystem/docker-compose-services.yml -f ~/wintermute/wintermute-ecosystem/docker-compose-utils.yml'
+alias rm-old-run-conts="docker ps -a | grep _run_ | awk '{ print $1 }' | xargs -I {} docker rm {}"
