@@ -13,6 +13,9 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'isruslan/vim-es6'
+Plugin 'valloric/youcompleteme'
+Plugin 'tpope/vim-surround'
+Plugin 'jiangmiao/auto-pairs'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -35,9 +38,12 @@ inoremap <F7> :tabprevious<CR>
 inoremap <F8> :tabnext<CR>
 nnoremap <C-/> <leader>c <CR>
 
+
 " include jsx in .js files
 let g:jsx_ext_required = 0
 
 " jk is escape
 inoremap jk <esc>
 set clipboard+=unnamed
+set completeopt-=preview
+let g:AutoPairsShortcutFastWrap = '<C-b>'
