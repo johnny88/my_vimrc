@@ -23,3 +23,8 @@ sudo groupadd docker
 sudo gpasswd -a ${USER} docker
 #Restart the Docker daemon:
 sudo service docker restart
+
+# Make sure git is installed
+sudo apt install git
+# Change git commits to vim
+git config --global core.editor "vim"
