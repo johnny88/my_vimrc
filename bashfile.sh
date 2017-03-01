@@ -16,6 +16,7 @@ sudo apt-get install spotify-client
 #install docker and docker compose
 wget -qO- https://get.docker.com/ | sh
 sudo bash -c 'curl -L "https://github.com/docker/compose/releases/download/1.11.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose'
+chmod +x /usr/local/bin/docker-compose
 #Add the docker group if it doesn't already exist:
 sudo groupadd docker
 #Add the connected user "${USER}" to the docker group. Change the user name to match your preferred user:
