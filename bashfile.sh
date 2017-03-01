@@ -28,3 +28,7 @@ sudo service docker restart
 sudo apt install git
 # Change git commits to vim
 git config --global core.editor "vim"
+
+#install node
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt-get install -y nodejs
