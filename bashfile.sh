@@ -1,4 +1,7 @@
-# some usefull bash things
+# Set up me some VUNDLE!!!
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+# Install gimp so I can edit images... and stuff
 sudo apt install gimp gimp-plugin-registry
 
 # 1. Add the Spotify repository signing key to be able to verify downloaded packages
