@@ -26,6 +26,7 @@ Plugin 'groovy.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'nginx.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -40,7 +41,7 @@ syntax enable           " enable syntax processing
 filetype on             " enable filetype checking
 au BufNewFile,BufRead Jenkinsfile set filetype=groovy
 
-set tabstop=4 softtabstop=0 expandtab shiftwidth=2 smarttab
+set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 set number              " show line numbers
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
@@ -55,8 +56,8 @@ let mapleader = ","
 """""""""""""""""""""""""""""""""""
 nnoremap <F9> :tabnew ./<CR>
 nnoremap <F3> :tabclose<CR>
-nnoremap <C-S-Left> :tabprevious<CR>
-nnoremap <C-S-Right> :tabnext<CR>
+nnoremap <C-h> :tabprevious<CR>
+nnoremap <C-l> :tabnext<CR>
 inoremap <F9> <Esc>:tabnew ./<CR>
 inoremap <F3> <Esc>:tabclose<CR>
 inoremap <F7> :tabprevious<CR>
@@ -117,3 +118,16 @@ let g:NERDCommentEmptyLines = 1
 
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
+
+"""""""""""""""""""""""""""""""""""
+"
+" Configuring Ctrl P
+"
+"""""""""""""""""""""""""""""""""""
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<c-t>'],
+    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+    \ }
+
+let g:ctrlp_open_new_file = 't'
+let g:ctrlp_show_hidden = 1
