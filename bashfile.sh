@@ -38,7 +38,7 @@ sudo apt install git
 git config --global core.editor "vim"
 
 #install node
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
 #install yarn
