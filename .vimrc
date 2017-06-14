@@ -56,8 +56,11 @@ let mapleader = ","
 """""""""""""""""""""""""""""""""""
 nnoremap <F9> :tabnew ./<CR>
 nnoremap <F3> :tabclose<CR>
-nnoremap <C-h> :tabprevious<CR>
-nnoremap <C-l> :tabnext<CR>
+nnoremap <C-j> :tabprevious<CR>
+inoremap <C-j> <Esc>:tabprevious<CR>
+nnoremap <C-k> :tabnext<CR>
+inoremap <C-k> <Esc>:tabnext<CR>
+
 inoremap <F9> <Esc>:tabnew ./<CR>
 inoremap <F3> <Esc>:tabclose<CR>
 inoremap <F7> :tabprevious<CR>
