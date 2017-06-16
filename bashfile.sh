@@ -1,13 +1,20 @@
+# Install curl and vim
+sudo apt install curl vim -y
+
+# Link vimrc and install plugins
+ln -s vimrc ~/.vimrc
+vim +PluginInstall +qall
+
 # Set up me some VUNDLE!!! and other vim/vim plugin dependancies
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-sudo apt-get install build-essential cmake
-sudo apt-get install python-dev python3-dev
+sudo apt install build-essential cmake -y
+sudo apt install python-dev python3-dev -y
 cd ~/.vim/bundle/youcompleteme/
 ./install.py --all
 cd ~/
 
 # Install gimp so I can edit images... and stuff
-sudo apt install gimp gimp-plugin-registry
+sudo apt install gimp gimp-plugin-registry -y
 
 # 1. Add the Spotify repository signing key to be able to verify downloaded packages
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886
@@ -16,10 +23,10 @@ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB31
 echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
 
 # 3. Update list of available packages
-sudo apt-get update
+sudo apt update
 
 # 4. Install Spotify
-sudo apt-get install spotify-client
+sudo apt install spotify-client -y
 
 #install docker and docker compose
 wget -qO- https://get.docker.com/ | sh
@@ -33,7 +40,7 @@ sudo gpasswd -a ${USER} docker
 sudo service docker restart
 
 # Make sure git is installed
-sudo apt install git
+sudo apt install git -y
 # Change git commits to vim
 git config --global core.editor "vim"
 
@@ -44,15 +51,18 @@ sudo apt-get install -y nodejs
 #install yarn
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-sudo apt-get update && sudo apt-get install yarn
+sudo apt-get update && sudo apt-get install yarn -y
+
+
 
 #install atom
-sudo add-apt-repository ppa:webupd8team/atom
-sudo apt update && sudo apt install atom
+sudo add-apt-repository ppa:webupd8team/atom -y
+sudo apt update && sudo apt install atom -y
 
 #install zsh
-sudo apt install zsh
+sudo apt install zsh -y
 #change default shell
 chsh -s $(which zsh)
 #install oh my zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
