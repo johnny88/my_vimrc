@@ -1,17 +1,16 @@
 # Install curl and vim
 sudo apt install curl vim -y
 
-# Link vimrc and install plugins
-ln -s vimrc ~/.vimrc
-vim +PluginInstall +qall
-
 # Set up me some VUNDLE!!! and other vim/vim plugin dependancies
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 sudo apt install build-essential cmake -y
 sudo apt install python-dev python3-dev -y
-cd ~/.vim/bundle/youcompleteme/
-./install.py --all
-cd ~/
+~/.vim/bundle/youcompleteme/install.py --all
+
+# Link vimrc and install plugins
+rm ~/.vimrc
+ln -s $PWD/vimrc ~/.vimrc
+vim +PluginInstall +qall
 
 # Install gimp so I can edit images... and stuff
 sudo apt install gimp gimp-plugin-registry -y
