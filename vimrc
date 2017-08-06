@@ -15,6 +15,7 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'othree/yajs.vim'
+" Plugin 'shougo/deoplete.nvim'
 " Plugin 'valloric/youcompleteme'
 Plugin 'tpope/vim-surround'
 Plugin 'jiangmiao/auto-pairs'
@@ -27,6 +28,8 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'nginx.vim'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'isRuslan/vim-es6'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -58,19 +61,23 @@ nnoremap <F9> :tabnew ./<CR>
 nnoremap <F3> :tabclose<CR>
 nnoremap <C-j> :tabprevious<CR>
 inoremap <C-j> <Esc>:tabprevious<CR>
+vnoremap <C-j> <Esc>:tabprevious<CR>
 nnoremap <C-k> :tabnext<CR>
 inoremap <C-k> <Esc>:tabnext<CR>
+vnoremap <C-k> <Esc>:tabnext<CR>
 
 inoremap <F9> <Esc>:tabnew ./<CR>
 inoremap <F3> <Esc>:tabclose<CR>
 inoremap <F7> :tabprevious<CR>
 
 
+inoremap <C-p> <Esc>:CtrlP<CR>
 " include jsx in .js files
 let g:jsx_ext_required = 0
 
 " jk is escape
 inoremap jk <esc>
+
 set clipboard+=unnamed
 set completeopt-=preview
 let g:AutoPairsShortcutFastWrap = '<C-b>'
@@ -143,3 +150,13 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 """""""""""""""""""""""""""""""""""
 au BufWinEnter * let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
 au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+
+let g:deoplete#enable_at_startup = 1
+"""""""""""""""""""""""""""""""""""
+"
+" Multi Line Configuration
+"
+"""""""""""""""""""""""""""""""""""
+let g:multi_cursor_insert_maps = { 'j': 1, ',': 1 }
+let g:multi_cursor_visual_maps = { 'i':1, 'a':1, 'f':1, 'F':1, 't':1, 'T':1,
+  \'j': 1, ',': 1 }
