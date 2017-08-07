@@ -148,10 +148,13 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 " setting char limit
 "
 """""""""""""""""""""""""""""""""""
-au BufWinEnter * let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
-au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
 
-let g:deoplete#enable_at_startup = 1
+" au BufWinEnter * let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
+" au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+
+" let g:deoplete#enable_at_startup = 1
 """""""""""""""""""""""""""""""""""
 "
 " Multi Line Configuration
