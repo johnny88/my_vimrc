@@ -46,8 +46,8 @@ au BufNewFile,BufRead Jenkinsfile set filetype=groovy
 
 set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 set number              " show line numbers
-nnoremap <F2> :set invpaste paste?<CR>
-set pastetoggle=<F2>
+nnoremap <C-h> :set invpaste paste?<CR>
+set pastetoggle=<C-h>
 set showmode
 
 let mapleader = ","
