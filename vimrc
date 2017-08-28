@@ -16,7 +16,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'othree/yajs.vim'
 " Plugin 'shougo/deoplete.nvim'
-" Plugin 'valloric/youcompleteme'
+Plugin 'valloric/youcompleteme'
 Plugin 'tpope/vim-surround'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'scrooloose/nerdtree'
@@ -30,6 +30,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'nginx.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'isRuslan/vim-es6'
+Plugin 'dracula/vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -163,3 +164,20 @@ match OverLength /\%81v.\+/
 let g:multi_cursor_insert_maps = { 'j': 1, ',': 1 }
 let g:multi_cursor_visual_maps = { 'i':1, 'a':1, 'f':1, 'F':1, 't':1, 'T':1,
   \'j': 1, ',': 1 }
+
+
+"""""""""""""""""""""""""""""""""""
+"
+" Turning on Dracula theme
+"
+"""""""""""""""""""""""""""""""""""
+syntax on
+color dracula
+
+"""""""""""""""""""""""""""""""""""
+"
+" You Complete Me Settings
+"
+"""""""""""""""""""""""""""""""""""
+let g:ycm_server_python_interpreter = '/usr/bin/python'
+
