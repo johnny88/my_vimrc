@@ -32,6 +32,9 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'isRuslan/vim-es6'
 Plugin 'dracula/vim'
 Plugin 'prettier/vim-prettier'
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'rust-lang/rust.vim'
+Plugin 'cespare/vim-toml'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
