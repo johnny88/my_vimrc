@@ -31,6 +31,7 @@ Plugin 'nginx.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'isRuslan/vim-es6'
 Plugin 'dracula/vim'
+Plugin 'prettier/vim-prettier'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -52,14 +53,20 @@ set pastetoggle=<C-w>
 set showmode
 
 let mapleader = ","
+" This allows for change paste motion cp{motion}
+nmap <silent> cp :set opfunc=ChangePaste<CR>g@
+function! ChangePaste(type, ...)
+    silent exe "normal! `[v`]\"_c"
+    silent exe "normal! p"
+endfunction
 
 """""""""""""""""""""""""""""""""""
 "
 " Tab configuration
 "
 """""""""""""""""""""""""""""""""""
-nnoremap <F9> :tabnew ./<CR>
-nnoremap <F3> :tabclose<CR>
+nnoremap <Leader>tn :tabnew ./<CR>
+nnoremap <Leader>tc :tabclose<CR>
 nnoremap <C-j> :tabprevious<CR>
 inoremap <C-j> <Esc>:tabprevious<CR>
 vnoremap <C-j> <Esc>:tabprevious<CR>
