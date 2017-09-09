@@ -16,7 +16,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'othree/yajs.vim'
 " Plugin 'shougo/deoplete.nvim'
-" Plugin 'valloric/youcompleteme'
+Plugin 'valloric/youcompleteme'
 Plugin 'tpope/vim-surround'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'scrooloose/nerdtree'
@@ -30,6 +30,8 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'nginx.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'isRuslan/vim-es6'
+Plugin 'dracula/vim'
+Plugin 'prettier/vim-prettier'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'rust-lang/rust.vim'
 Plugin 'cespare/vim-toml'
@@ -54,14 +56,20 @@ set pastetoggle=<C-w>
 set showmode
 
 let mapleader = ","
+" This allows for change paste motion cp{motion}
+nmap <silent> cp :set opfunc=ChangePaste<CR>g@
+function! ChangePaste(type, ...)
+    silent exe "normal! `[v`]\"_c"
+    silent exe "normal! p"
+endfunction
 
 """""""""""""""""""""""""""""""""""
 "
 " Tab configuration
 "
 """""""""""""""""""""""""""""""""""
-nnoremap <F9> :tabnew ./<CR>
-nnoremap <F3> :tabclose<CR>
+nnoremap <Leader>tn :tabnew ./<CR>
+nnoremap <Leader>tc :tabclose<CR>
 nnoremap <C-j> :tabprevious<CR>
 inoremap <C-j> <Esc>:tabprevious<CR>
 vnoremap <C-j> <Esc>:tabprevious<CR>
@@ -166,3 +174,20 @@ match OverLength /\%81v.\+/
 let g:multi_cursor_insert_maps = { 'j': 1, ',': 1 }
 let g:multi_cursor_visual_maps = { 'i':1, 'a':1, 'f':1, 'F':1, 't':1, 'T':1,
   \'j': 1, ',': 1 }
+
+
+"""""""""""""""""""""""""""""""""""
+"
+" Turning on Dracula theme
+"
+"""""""""""""""""""""""""""""""""""
+syntax on
+color dracula
+
+"""""""""""""""""""""""""""""""""""
+"
+" You Complete Me Settings
+"
+"""""""""""""""""""""""""""""""""""
+let g:ycm_server_python_interpreter = '/usr/bin/python'
+
