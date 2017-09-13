@@ -76,6 +76,9 @@ inoremap jk <esc>
 
 set clipboard+=unnamed
 set completeopt-=preview
+if $TMUX == ''
+    set clipboard+=unnamed
+endif
 let g:AutoPairsShortcutFastWrap = '<C-b>'
 
 """""""""""""""""""""""""""""""""""
