@@ -16,7 +16,9 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'othree/yajs.vim'
 " Plugin 'shougo/deoplete.nvim'
-Plugin 'valloric/youcompleteme'
+" Plugin 'valloric/youcompleteme'
+" Plugin 'prabirshrestha/asyncomplete.vim'
+Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'scrooloose/nerdtree'
@@ -28,13 +30,15 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'nginx.vim'
-Plugin 'terryma/vim-multiple-cursors'
+" Plugin 'terryma/vim-multiple-cursors'
 Plugin 'isRuslan/vim-es6'
 Plugin 'dracula/vim'
 Plugin 'prettier/vim-prettier'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'rust-lang/rust.vim'
 Plugin 'cespare/vim-toml'
+Plugin 'rking/ag.vim'
+Plugin 'moll/vim-bbye'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -51,8 +55,8 @@ au BufNewFile,BufRead Jenkinsfile set filetype=groovy
 
 set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 set number              " show line numbers
-nnoremap <C-w> :set invpaste paste?<CR>
-set pastetoggle=<C-w>
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
 set showmode
 
 let mapleader = ","
@@ -62,25 +66,6 @@ function! ChangePaste(type, ...)
     silent exe "normal! `[v`]\"_c"
     silent exe "normal! p"
 endfunction
-
-"""""""""""""""""""""""""""""""""""
-"
-" Tab configuration
-"
-"""""""""""""""""""""""""""""""""""
-nnoremap <Leader>tn :tabnew ./<CR>
-nnoremap <Leader>tc :tabclose<CR>
-nnoremap <C-j> :tabprevious<CR>
-inoremap <C-j> <Esc>:tabprevious<CR>
-vnoremap <C-j> <Esc>:tabprevious<CR>
-nnoremap <C-k> :tabnext<CR>
-inoremap <C-k> <Esc>:tabnext<CR>
-vnoremap <C-k> <Esc>:tabnext<CR>
-
-inoremap <F9> <Esc>:tabnew ./<CR>
-inoremap <F3> <Esc>:tabclose<CR>
-inoremap <F7> :tabprevious<CR>
-
 
 inoremap <C-p> <Esc>:CtrlP<CR>
 " include jsx in .js files
@@ -92,6 +77,19 @@ inoremap jk <esc>
 set clipboard+=unnamed
 set completeopt-=preview
 let g:AutoPairsShortcutFastWrap = '<C-b>'
+
+"""""""""""""""""""""""""""""""""""
+"
+" Movement configuration
+"
+"""""""""""""""""""""""""""""""""""
+set hidden
+" nnoremap <C-J> <C-W><C-J>
+" nnoremap <C-K> <C-W><C-K>
+" nnoremap <C-L> <C-W><C-L>
+" nnoremap <C-H> <C-W><C-H>
+set splitbelow
+set splitright
 
 """""""""""""""""""""""""""""""""""
 "
@@ -125,7 +123,11 @@ set laststatus=2
 " Configuring Nerd Tree
 "
 """""""""""""""""""""""""""""""""""
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let NERDTreeShowHidden=1
+map <C-n> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 """""""""""""""""""""""""""""""""""
 "
@@ -145,12 +147,12 @@ let g:NERDSpaceDelims = 1
 " Configuring Ctrl P
 "
 """""""""""""""""""""""""""""""""""
-let g:ctrlp_prompt_mappings = {
-    \ 'AcceptSelection("e")': ['<c-t>'],
-    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-    \ }
+" let g:ctrlp_prompt_mappings = {
+    " \ 'acceptselection("e")': ['<c-t>'],
+    " \ 'acceptselection("t")': ['<cr>', '<2-leftmouse>'],
+    " \ }
 
-let g:ctrlp_open_new_file = 't'
+let g:ctrlp_open_new_file = 'b'
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
@@ -186,8 +188,21 @@ color dracula
 
 """""""""""""""""""""""""""""""""""
 "
-" You Complete Me Settings
+" Javascript Code Completion Setup
 "
 """""""""""""""""""""""""""""""""""
-let g:ycm_server_python_interpreter = '/usr/bin/python'
+let g:used_javascript_libs = 'react,lo-dash,flux'
 
+"""""""""""""""""""""""""""""""""""
+"
+" Bbye configuration 
+"
+"""""""""""""""""""""""""""""""""""
+nnoremap <Leader>q :Bdelete<CR>
+
+"""""""""""""""""""""""""""""""""""
+"
+" AG.VIM configuration
+"
+"""""""""""""""""""""""""""""""""""
+let g:ag_working_path_mode="r"
