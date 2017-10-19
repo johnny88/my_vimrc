@@ -11,35 +11,23 @@ call vundle#begin()
 
 " Plugins
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'othree/yajs.vim'
-" Plugin 'shougo/deoplete.nvim'
-" Plugin 'valloric/youcompleteme'
-" Plugin 'prabirshrestha/asyncomplete.vim'
-Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'scrooloose/nerdtree'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'scrooloose/syntastic'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'groovy.vim'
 Plugin 'vim-airline/vim-airline'
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'nginx.vim'
-" Plugin 'terryma/vim-multiple-cursors'
-Plugin 'isRuslan/vim-es6'
 Plugin 'dracula/vim'
 Plugin 'prettier/vim-prettier'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'rust-lang/rust.vim'
-Plugin 'cespare/vim-toml'
-Plugin 'rking/ag.vim'
 Plugin 'moll/vim-bbye'
-Plugin 'vim-ruby/vim-ruby'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'w0rp/ale'
+Plugin 'tpope/vim-repeat'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -68,7 +56,6 @@ function! ChangePaste(type, ...)
     silent exe "normal! p"
 endfunction
 
-inoremap <C-p> <Esc>:CtrlP<CR>
 " include jsx in .js files
 let g:jsx_ext_required = 0
 
@@ -88,32 +75,8 @@ let g:AutoPairsShortcutFastWrap = '<C-b>'
 "
 """""""""""""""""""""""""""""""""""
 set hidden
-" nnoremap <C-J> <C-W><C-J>
-" nnoremap <C-K> <C-W><C-K>
-" nnoremap <C-L> <C-W><C-L>
-" nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
-
-"""""""""""""""""""""""""""""""""""
-"
-" Configuring Syntastic
-"
-"""""""""""""""""""""""""""""""""""
-let g:syntastic_mode_map = { 'mode': 'active',
-                            \ 'active_filetypes': ['javascript'],
-                            \ 'passive_filetypes': [] }
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_loc_list_height = 3
 
 """""""""""""""""""""""""""""""""""
 "
@@ -129,7 +92,7 @@ set laststatus=2
 """""""""""""""""""""""""""""""""""
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-" let NERDTreeShowHidden=1
+
 map <C-n> :NERDTreeFocus<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 nnoremap <silent> <Leader>, :exe "vertical resize " . (winwidth(0) * 8/7)<CR>
@@ -150,17 +113,12 @@ let g:NERDSpaceDelims = 1
 
 """""""""""""""""""""""""""""""""""
 "
-" Configuring Ctrl P
+" Configuring fzf
 "
 """""""""""""""""""""""""""""""""""
-" let g:ctrlp_prompt_mappings = {
-    " \ 'acceptselection("e")': ['<c-t>'],
-    " \ 'acceptselection("t")': ['<cr>', '<2-leftmouse>'],
-    " \ }
-
-let g:ctrlp_open_new_file = 'b'
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+nmap ; :Buffers<CR>
+nmap <Leader>t :Files<CR>
+nmap <Leader>r :Tags<CR>
 
 """""""""""""""""""""""""""""""""""
 "
@@ -170,10 +128,6 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
-" au BufWinEnter * let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
-" au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-
-" let g:deoplete#enable_at_startup = 1
 """""""""""""""""""""""""""""""""""
 "
 " Multi Line Configuration
@@ -208,7 +162,34 @@ nnoremap <Leader>q :Bdelete<CR>
 
 """""""""""""""""""""""""""""""""""
 "
-" AG.VIM configuration
+" ACK.VIM configuration
 "
 """""""""""""""""""""""""""""""""""
-let g:ag_working_path_mode="r"
+" Use Silver Searcher if exists
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+" Search for current word
+nmap <M-k>    :Ack! "\b<cword>\b" <CR>
+nmap <Esc>k   :Ack! "\b<cword>\b" <CR>
+nmap <M-S-k>  :Ggrep! "\b<cword>\b" <CR>
+nmap <Esc>K   :Ggrep! "\b<cword>\b" <CR>
+
+" Don't go to first search result by default
+cnoreabbrev Ack Ack!
+nnoremap <Leader>a :Ack!<Space>
+
+"""""""""""""""""""""""""""""""""""
+"
+" Prettier Configuration
+"
+"""""""""""""""""""""""""""""""""""
+" print spaces between brackets
+let g:prettier#config#bracket_spacing = 'true'
+
+" put > on the last line instead of new line
+let g:prettier#config#jsx_bracket_same_line = 'true'
+
+" none|es5|all
+let g:prettier#config#trailing_comma = 'none'
