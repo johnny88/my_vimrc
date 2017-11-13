@@ -93,7 +93,7 @@ set laststatus=2
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-map <C-n> :NERDTreeFocus<CR>
+map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 nnoremap <silent> <Leader>, :exe "vertical resize " . (winwidth(0) * 8/7)<CR>
 nnoremap <silent> <Leader>. :exe "vertical resize " . (winwidth(0) * 7/8)<CR>
@@ -119,24 +119,6 @@ let g:NERDSpaceDelims = 1
 nmap ; :Buffers<CR>
 nmap <Leader>t :Files<CR>
 nmap <Leader>r :Tags<CR>
-
-"""""""""""""""""""""""""""""""""""
-"
-" setting char limit
-"
-"""""""""""""""""""""""""""""""""""
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
-
-"""""""""""""""""""""""""""""""""""
-"
-" Multi Line Configuration
-"
-"""""""""""""""""""""""""""""""""""
-let g:multi_cursor_insert_maps = { 'j': 1, ',': 1 }
-let g:multi_cursor_visual_maps = { 'i':1, 'a':1, 'f':1, 'F':1, 't':1, 'T':1,
-  \'j': 1, ',': 1 }
-
 
 """""""""""""""""""""""""""""""""""
 "
@@ -170,12 +152,6 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
-" Search for current word
-nmap <M-k>    :Ack! "\b<cword>\b" <CR>
-nmap <Esc>k   :Ack! "\b<cword>\b" <CR>
-nmap <M-S-k>  :Ggrep! "\b<cword>\b" <CR>
-nmap <Esc>K   :Ggrep! "\b<cword>\b" <CR>
-
 " Don't go to first search result by default
 cnoreabbrev Ack Ack!
 nnoremap <Leader>a :Ack!<Space>
@@ -185,11 +161,35 @@ nnoremap <Leader>a :Ack!<Space>
 " Prettier Configuration
 "
 """""""""""""""""""""""""""""""""""
+" max line length that prettier will wrap on
+let g:prettier#config#print_width = 80
+
+" number of spaces per indentation level
+let g:prettier#config#tab_width = 2
+
+" use tabs over spaces
+let g:prettier#config#use_tabs = 'false'
+
+" print semicolons
+let g:prettier#config#semi = 'true'
+
 " print spaces between brackets
 let g:prettier#config#bracket_spacing = 'true'
-
+"
+" single quotes over double quotes
+let g:prettier#config#single_quote = 'true'
+"
 " put > on the last line instead of new line
-let g:prettier#config#jsx_bracket_same_line = 'true'
+let g:prettier#config#jsx_bracket_same_line = 'false'
 
 " none|es5|all
 let g:prettier#config#trailing_comma = 'none'
+
+" flow|babylon|typescript|postcss|json|graphql
+let g:prettier#config#parser = 'flow'
+
+" cli-override|file-override|prefer-file
+let g:prettier#config#config_precedence = 'cli-override'
+
+let g:prettier#exec_cmd_path = "/usr/bin/prettier"
+
