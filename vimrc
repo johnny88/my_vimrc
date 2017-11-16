@@ -37,6 +37,7 @@ filetype plugin indent on    " required
 " Some general config
 "
 """""""""""""""""""""""""""""""""""
+let mapleader = ","
 set hlsearch
 syntax enable           " enable syntax processing
 filetype on             " enable filetype checking
@@ -44,11 +45,10 @@ au BufNewFile,BufRead Jenkinsfile set filetype=groovy
 
 set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 set number              " show line numbers
-nnoremap <F2> :set invpaste paste?<CR>
-set pastetoggle=<F2>
+nnoremap <Leader>z :set invpaste paste?<CR>
+set pastetoggle=<Leader>z
 set showmode
 
-let mapleader = ","
 " This allows for change paste motion cp{motion}
 nmap <silent> cp :set opfunc=ChangePaste<CR>g@
 function! ChangePaste(type, ...)
@@ -94,6 +94,7 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 map <C-n> :NERDTreeToggle<CR>
+map <Leader>n :NERDTreeFocus<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 nnoremap <silent> <Leader>, :exe "vertical resize " . (winwidth(0) * 8/7)<CR>
 nnoremap <silent> <Leader>. :exe "vertical resize " . (winwidth(0) * 7/8)<CR>
