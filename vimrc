@@ -45,10 +45,10 @@ au BufNewFile,BufRead Jenkinsfile set filetype=groovy
 
 set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 set number              " show line numbers
-nnoremap <Leader>z :set invpaste paste?<CR>
-set pastetoggle=<Leader>z
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
 set showmode
-
+"
 " This allows for change paste motion cp{motion}
 nmap <silent> cp :set opfunc=ChangePaste<CR>g@
 function! ChangePaste(type, ...)
@@ -120,6 +120,7 @@ let g:NERDSpaceDelims = 1
 nmap ; :Buffers<CR>
 nmap <Leader>t :Files<CR>
 nmap <Leader>r :Tags<CR>
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 """""""""""""""""""""""""""""""""""
 "
