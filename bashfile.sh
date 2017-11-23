@@ -12,20 +12,9 @@ rm ~/.vimrc
 ln -s $PWD/vimrc ~/.vimrc
 vim +PluginInstall +qall
 
-# Install gimp so I can edit images... and stuff
-sudo apt install gimp gimp-plugin-registry -y
-
-# 1. Add the Spotify repository signing key to be able to verify downloaded packages
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886
-
-# 2. Add the Spotify repository
-echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
-
-# 3. Update list of available packages
-sudo apt update
-
-# 4. Install Spotify
-sudo apt install spotify-client -y
+# Installs tmux and links conf
+sudo apt install tmux -y
+ln -s $PWD/tmux.conf ~/.tmux.conf
 
 #install docker and docker compose
 wget -qO- https://get.docker.com/ | sh
@@ -51,12 +40,6 @@ sudo apt-get install -y nodejs
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt-get update && sudo apt-get install yarn -y
-
-
-
-#install atom
-sudo add-apt-repository ppa:webupd8team/atom -y
-sudo apt update && sudo apt install atom -y
 
 #install zsh
 sudo apt install zsh -y
