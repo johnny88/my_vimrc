@@ -18,7 +18,7 @@ ln -s $PWD/tmux.conf ~/.tmux.conf
 
 #install docker and docker compose
 wget -qO- https://get.docker.com/ | sh
-sudo bash -c 'curl -L "https://github.com/docker/compose/releases/download/1.11.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose'
+sudo bash -c 'curl -L "https://github.com/docker/compose/releases/download/1.17.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose'
 sudo chmod +x /usr/local/bin/docker-compose
 #Add the docker group if it doesn't already exist:
 sudo groupadd docker
@@ -47,4 +47,12 @@ sudo apt install zsh -y
 chsh -s $(which zsh)
 #install oh my zsh
 sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# Add docker zsh completion
+mkdir -p ~/.zsh/completion
+curl -L https://raw.githubusercontent.com/docker/compose/1.17.0/contrib/completion/zsh/_docker-compose > ~/.zsh/completion/_docker-compose
+
+# Install prettier globally
+yarn global add prettier
+
 
