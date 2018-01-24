@@ -1,11 +1,11 @@
+#install node
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+
 # Install curl and vim
-sudo apt install curl vim -y
+sudo apt update && sudo apt install zsh nodejs curl vim build-essential cmake python-dev python3-dev tmux -y
 
 # Set up me some VUNDLE!!! and other vim/vim plugin dependancies
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-sudo apt install build-essential cmake -y
-sudo apt install python-dev python3-dev -y
-~/.vim/bundle/youcompleteme/install.py --all
 
 # Link vimrc and install plugins
 rm ~/.vimrc
@@ -13,7 +13,6 @@ ln -s $PWD/vimrc ~/.vimrc
 vim +PluginInstall +qall
 
 # Installs tmux and links conf
-sudo apt install tmux -y
 ln -s $PWD/tmux.conf ~/.tmux.conf
 
 #install docker and docker compose
@@ -27,22 +26,15 @@ sudo gpasswd -a ${USER} docker
 #Restart the Docker daemon:
 sudo service docker restart
 
-# Make sure git is installed
-sudo apt install git -y
 # Change git commits to vim
 git config --global core.editor "vim"
 
-#install node
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-sudo apt-get install -y nodejs
 
 #install yarn
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt-get update && sudo apt-get install yarn -y
 
-#install zsh
-sudo apt install zsh -y
 #change default shell
 chsh -s $(which zsh)
 #install oh my zsh

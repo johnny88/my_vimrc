@@ -37,6 +37,7 @@ filetype plugin indent on    " required
 " Some general config
 "
 """""""""""""""""""""""""""""""""""
+set encoding=utf-8
 let mapleader = ","
 set hlsearch
 syntax enable           " enable syntax processing
@@ -67,7 +68,6 @@ set completeopt-=preview
 if $TMUX == ''
     set clipboard+=unnamed
 endif
-let g:AutoPairsShortcutFastWrap = '<C-b>'
 
 """""""""""""""""""""""""""""""""""
 "
@@ -151,7 +151,7 @@ nnoremap <Leader>q :Bdelete<CR>
 """""""""""""""""""""""""""""""""""
 " Use Silver Searcher if exists
 if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
+  let g:ackprg = 'ag -F'
 endif
 
 " Don't go to first search result by default
@@ -179,7 +179,7 @@ let g:prettier#config#semi = 'true'
 let g:prettier#config#bracket_spacing = 'true'
 "
 " single quotes over double quotes
-let g:prettier#config#single_quote = 'true'
+let g:prettier#config#single_quote = 'false'
 "
 " put > on the last line instead of new line
 let g:prettier#config#jsx_bracket_same_line = 'false'
@@ -194,4 +194,7 @@ let g:prettier#config#parser = 'flow'
 let g:prettier#config#config_precedence = 'cli-override'
 
 let g:prettier#exec_cmd_path = "/usr/bin/prettier"
+
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md PrettierAsync
 
