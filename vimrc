@@ -12,12 +12,10 @@ call vundle#begin()
 " Plugins
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-surround'
-Plugin 'jiangmiao/auto-pairs'
 Plugin 'scrooloose/nerdtree'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'vim-airline/vim-airline'
+Plugin 'itchyny/lightline.vim'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'nginx.vim'
 Plugin 'dracula/vim'
 Plugin 'prettier/vim-prettier'
 Plugin 'moll/vim-bbye'
@@ -80,10 +78,15 @@ set splitright
 
 """""""""""""""""""""""""""""""""""
 "
-" Configuring vim airline
+" Configuring lightline
 "
 """""""""""""""""""""""""""""""""""
 set laststatus=2
+set noshowmode
+
+let g:lightline = {
+      \ 'colorscheme': 'Dracula',
+      \ }
 
 """""""""""""""""""""""""""""""""""
 "
@@ -120,7 +123,7 @@ let g:NERDSpaceDelims = 1
 nmap ; :Buffers<CR>
 nmap <Leader>t :Files<CR>
 nmap <Leader>r :Tags<CR>
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore "*\.git/*" -g ""'
 
 """""""""""""""""""""""""""""""""""
 "
@@ -151,7 +154,7 @@ nnoremap <Leader>q :Bdelete<CR>
 """""""""""""""""""""""""""""""""""
 " Use Silver Searcher if exists
 if executable('ag')
-  let g:ackprg = 'ag -F'
+  let g:ackprg = 'ag --hidden --ignore "*\.git/*" -F'
 endif
 
 " Don't go to first search result by default
@@ -197,4 +200,11 @@ let g:prettier#exec_cmd_path = "/usr/bin/prettier"
 
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md PrettierAsync
+
+"""""""""""""""""""""""""""""""""""
+"
+" bbye Configuration
+"
+"""""""""""""""""""""""""""""""""""
+nnoremap <Leader>q :Bdelete<CR>
 
