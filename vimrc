@@ -1,34 +1,43 @@
 """""""""""""""""""""""""""""""""""
 "
-" Setting up vundle
+" Install vim-plug
+"
+"""""""""""""""""""""""""""""""""""
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+"""""""""""""""""""""""""""""""""""
+"
+" Setting up plug
 "
 """""""""""""""""""""""""""""""""""
 set nocompatible              " be iMproved, required
-filetype off                  " required
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
 " Plugins
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-surround'
-Plugin 'scrooloose/nerdtree'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'itchyny/lightline.vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'dracula/vim'
-Plugin 'prettier/vim-prettier'
-Plugin 'moll/vim-bbye'
-Plugin 'sheerun/vim-polyglot'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-Plugin 'mileszs/ack.vim'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'w0rp/ale'
-Plugin 'tpope/vim-repeat'
+Plug 'VundleVim/Vundle.vim'
+Plug 'tpope/vim-surround'
+Plug 'scrooloose/nerdtree'
+Plug 'airblade/vim-gitgutter'
+Plug 'itchyny/lightline.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'dracula/vim'
+Plug 'prettier/vim-prettier'
+Plug 'moll/vim-bbye'
+Plug 'sheerun/vim-polyglot'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'mileszs/ack.vim'
+Plug 'tpope/vim-unimpaired'
+Plug 'w0rp/ale'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-sensible'
 
-call vundle#end()            " required
-filetype plugin indent on    " required
+call plug#end()            " required
 
 """""""""""""""""""""""""""""""""""
 "
@@ -47,7 +56,7 @@ set number              " show line numbers
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
-"
+
 " This allows for change paste motion cp{motion}
 nmap <silent> cp :set opfunc=ChangePaste<CR>g@
 function! ChangePaste(type, ...)
@@ -124,6 +133,7 @@ nmap ; :Buffers<CR>
 nmap <Leader>t :Files<CR>
 nmap <Leader>r :Tags<CR>
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore "*\.git/*" -g ""'
+set rtp+=/usr/local/opt/fzf
 
 """""""""""""""""""""""""""""""""""
 "

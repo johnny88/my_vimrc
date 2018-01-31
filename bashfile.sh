@@ -4,9 +4,6 @@ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 # Install curl and vim
 sudo apt update && sudo apt install zsh nodejs curl vim build-essential cmake python-dev python3-dev tmux -y
 
-# Set up me some VUNDLE!!! and other vim/vim plugin dependancies
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-
 # Link vimrc and install plugins
 rm ~/.vimrc
 ln -s $PWD/vimrc ~/.vimrc
