@@ -26,7 +26,9 @@ Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'dracula/vim'
-Plug 'prettier/vim-prettier'
+" post install (yarn install | npm install) then load plugin only for editing
+" supported files
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'moll/vim-bbye'
 Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf'
@@ -210,6 +212,8 @@ let g:prettier#exec_cmd_path = "/usr/bin/prettier"
 
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md PrettierAsync
+
+let g:prettier#config#prose_wrap = 'always'
 
 """""""""""""""""""""""""""""""""""
 "

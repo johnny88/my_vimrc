@@ -41,7 +41,3 @@ sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zs
 mkdir -p ~/.zsh/completion
 curl -L https://raw.githubusercontent.com/docker/compose/1.17.0/contrib/completion/zsh/_docker-compose > ~/.zsh/completion/_docker-compose
 
-# Install prettier globally
-yarn global add prettier
-
-
