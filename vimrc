@@ -38,6 +38,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
+Plug 'jiangmiao/auto-pairs'
 
 call plug#end()            " required
 
