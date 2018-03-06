@@ -19,7 +19,6 @@ set nocompatible              " be iMproved, required
 call plug#begin('~/.vim/plugged')
 
 " Plugins
-Plug 'VundleVim/Vundle.vim'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
 Plug 'airblade/vim-gitgutter'
@@ -148,13 +147,6 @@ color dracula
 
 """""""""""""""""""""""""""""""""""
 "
-" Javascript Code Completion Setup
-"
-"""""""""""""""""""""""""""""""""""
-let g:used_javascript_libs = 'react,lo-dash,flux'
-
-"""""""""""""""""""""""""""""""""""
-"
 " Bbye configuration 
 "
 """""""""""""""""""""""""""""""""""
@@ -215,11 +207,3 @@ let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md PrettierAsync
 
 let g:prettier#config#prose_wrap = 'always'
-
-"""""""""""""""""""""""""""""""""""
-"
-" bbye Configuration
-"
-"""""""""""""""""""""""""""""""""""
-nnoremap <Leader>q :Bdelete<CR>
-
