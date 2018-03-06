@@ -2,12 +2,11 @@
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 
 # Install curl and vim
-sudo apt update && sudo apt install zsh nodejs curl vim build-essential cmake python-dev python3-dev tmux -y
+sudo apt update && sudo apt install zsh nodejs curl vim build-essential cmake python-dev python3-dev tmux silversearcher-ag -y
 
 # Link vimrc and install plugins
 rm ~/.vimrc
 ln -s $PWD/vimrc ~/.vimrc
-vim +PluginInstall +qall
 
 # Installs tmux and links conf
 ln -s $PWD/tmux.conf ~/.tmux.conf
@@ -25,7 +24,6 @@ sudo service docker restart
 
 # Change git commits to vim
 git config --global core.editor "vim"
-
 
 #install yarn
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
