@@ -1,4 +1,4 @@
-"""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""
 "
 " Install vim-plug
 "
@@ -24,7 +24,11 @@ Plug 'scrooloose/nerdtree'
 Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdcommenter'
+"
+" Themes
 Plug 'dracula/vim'
+Plug 'flazz/vim-colorschemes'
+
 " post install (yarn install | npm install) then load plugin only for editing
 " supported files
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
@@ -38,6 +42,9 @@ Plug 'w0rp/ale'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'jiangmiao/auto-pairs'
+Plug 'jparise/vim-graphql'
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'edkolev/tmuxline.vim'
 
 call plug#end()            " required
 
@@ -126,6 +133,28 @@ let g:NERDCommentEmptyLines = 1
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
+" Supporting Vue files with multiple different comment types
+let g:ft = ''
+fu! NERDCommenter_before()
+  if &ft == 'vue'
+    let g:ft = 'vue'
+    let stack = synstack(line('.'), col('.'))
+    if len(stack) > 0
+      let syn = synIDattr((stack)[0], 'name')
+      if len(syn) > 0
+        let syn = tolower(syn)
+        exe 'setf '.syn
+      endif
+    endif
+  endif
+endfu
+fu! NERDCommenter_after()
+  if g:ft == 'vue'
+    setf vue
+    g:ft
+  endif
+endfu
+
 """""""""""""""""""""""""""""""""""
 "
 " Configuring fzf
@@ -139,11 +168,11 @@ set rtp+=/usr/local/opt/fzf
 
 """""""""""""""""""""""""""""""""""
 "
-" Turning on Dracula theme
+" Turning on theme
 "
 """""""""""""""""""""""""""""""""""
 syntax on
-color dracula
+colorscheme dracula
 
 """""""""""""""""""""""""""""""""""
 "
@@ -171,39 +200,29 @@ nnoremap <Leader>a :Ack!<Space>
 " Prettier Configuration
 "
 """""""""""""""""""""""""""""""""""
-" max line length that prettier will wrap on
+
 let g:prettier#config#print_width = 80
-
-" number of spaces per indentation level
 let g:prettier#config#tab_width = 2
-
-" use tabs over spaces
+let g:prettier#config#semi = 'false'
 let g:prettier#config#use_tabs = 'false'
-
-" print semicolons
-let g:prettier#config#semi = 'true'
-
-" print spaces between brackets
 let g:prettier#config#bracket_spacing = 'true'
-"
-" single quotes over double quotes
-let g:prettier#config#single_quote = 'false'
-"
-" put > on the last line instead of new line
 let g:prettier#config#jsx_bracket_same_line = 'false'
-
-" none|es5|all
 let g:prettier#config#trailing_comma = 'none'
-
-" flow|babylon|typescript|postcss|json|graphql
 let g:prettier#config#parser = 'flow'
-
-" cli-override|file-override|prefer-file
 let g:prettier#config#config_precedence = 'cli-override'
-
 let g:prettier#exec_cmd_path = "/usr/bin/prettier"
+let g:prettier#config#prose_wrap = 'always'
 
 let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md PrettierAsync
+autocmd BufWritePre *.md PrettierAsync
+" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md PrettierAsync
 
-let g:prettier#config#prose_wrap = 'always'
+
+let g:tmuxline_separators = {
+    \ 'left' : '',
+    \ 'left_alt': '>',
+    \ 'right' : '',
+    \ 'right_alt' : '<',
+    \ 'space' : ' '}
+
+
