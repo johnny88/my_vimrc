@@ -3,7 +3,7 @@
 " Install vim-plug
 "
 """""""""""""""""""""""""""""""""""
-if empty(glob('~/.vim/autoload/plug.vim'))
+if empty(glob('~/vimfiles/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
@@ -225,4 +225,20 @@ let g:tmuxline_separators = {
     \ 'right_alt' : '<',
     \ 'space' : ' '}
 
+"""""""""""""""""""""""""""""""""""
+"
+" Windows Configuration
+"
+"""""""""""""""""""""""""""""""""""
 
+" Fixing the colors not working issue
+if !has("gui_running")
+    set term=xterm
+    set t_Co=256
+    let &t_AB="\e[48;5;%dm"
+    let &t_AF="\e[38;5;%dm"
+endif
+
+" Fixing backspace acting as delete issue
+let &t_kb = nr2char(127)
+let &t_kD = "^[[3~"
