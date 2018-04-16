@@ -1,16 +1,8 @@
 # install curl 
-sudo apt update && sudo apt install curl apt-transport-https
+sudo apt update && sudo apt install curl apt-transport-https -y
 
 #install node
 curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
-
-# install sublime
-wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
-echo "deb https://download.sublimetext.com/ apt/dev/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
-
-# install spotify
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0DF731E45CE24F27EEEB1450EFDC8610341D9410
-echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
 
 # Install curl and vim
 sudo apt update && sudo apt install zsh nodejs curl vim vim-gnome build-essential cmake python-dev python3-dev tmux silversearcher-ag sublime-text spotify-client -y
@@ -24,7 +16,7 @@ ln -s $PWD/tmux.conf ~/.tmux.conf
 
 #install docker and docker compose
 wget -qO- https://get.docker.com/ | sh
-sudo bash -c 'curl -L "https://github.com/docker/compose/releases/download/1.19.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose'
+sudo bash -c 'curl -L "https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose'
 sudo chmod +x /usr/local/bin/docker-compose
 #Add the docker group if it doesn't already exist:
 sudo groupadd docker
