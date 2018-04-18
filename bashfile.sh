@@ -5,7 +5,7 @@ sudo apt update && sudo apt install curl apt-transport-https -y
 curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
 
 # Install curl and vim
-sudo apt update && sudo apt install zsh nodejs curl vim vim-gnome build-essential cmake python-dev python3-dev tmux silversearcher-ag sublime-text spotify-client -y
+sudo apt update && sudo apt install zsh nodejs curl vim vim-gnome build-essential cmake python-dev python3-dev tmux silversearcher-ag -y
 
 # Link vimrc and install plugins
 rm ~/.vimrc
@@ -34,7 +34,8 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 sudo apt-get update && sudo apt-get install yarn -y
 
 #change default shell
-chsh -s $(which zsh)
+command -v zsh | sudo tee -a /etc/shells
+sudo chsh -s "$(command -v zsh)" "${USER}"
 #install oh my zsh
 sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
@@ -42,3 +43,5 @@ sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zs
 mkdir -p ~/.zsh/completion
 curl -L https://raw.githubusercontent.com/docker/compose/1.19.0/contrib/completion/zsh/_docker-compose > ~/.zsh/completion/_docker-compose
 
+sudo chown -R $USER:$USER $HOME/*
+sudo chown -R $USER:$USER $HOME/.*
