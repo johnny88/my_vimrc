@@ -24,7 +24,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdcommenter'
-"
+"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'  }
+
 " Themes
 Plug 'dracula/vim'
 
@@ -34,7 +35,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-sensible'
 Plug 'jiangmiao/auto-pairs'
-Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'ycm-core/YouCompleteMe'
 
 call plug#end()            " required
 
@@ -54,6 +55,7 @@ set number              " show line numbers
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
+set mouse=a
 
 " include jsx in .js files
 let g:jsx_ext_required = 0
@@ -108,7 +110,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 nmap ; :Buffers<CR>
 nmap <Leader>t :Files<CR>
 nmap <Leader>r :Tags<CR>
-let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore "*\.git/*" -g ""'
+
 set rtp+=/usr/local/opt/fzf
 
 """""""""""""""""""""""""""""""""""
@@ -125,8 +127,7 @@ highlight Normal ctermbg=None
 " Configuring Ale
 "
 """""""""""""""""""""""""""""""""""
-let g:ale_completion_enabled = 1
-set completeopt=menu,menuone,preview,noselect,noinsert
-let g:ale_fixers = {'javascript': ['eslint']}
-let g:ale_linters = {'javascript': ['eslint']}
+let g:ale_go_gofmt_options = '-w'
+let g:ale_fixers = {'javascript': ['eslint'], 'go': ['gofmt', 'goimports']}
+let g:ale_linters = {'javascript': ['eslint'], 'go': ['gopls']}
 let g:ale_fix_on_save = 1
