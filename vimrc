@@ -24,18 +24,20 @@ Plug 'scrooloose/nerdtree'
 Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdcommenter'
-"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'  }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'  }
 
 " Themes
 Plug 'dracula/vim'
 
 Plug 'sheerun/vim-polyglot'
-Plug 'junegunn/fzf'
+let g:fzf_install = 'yes | ./install'
+Plug 'junegunn/fzf', { 'do': g:fzf_install }
 Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-sensible'
 Plug 'jiangmiao/auto-pairs'
-Plug 'ycm-core/YouCompleteMe'
+Plug 'ycm-core/YouCompleteMe', { 'for': 'javascript', 'do': './install.py --ts-completer' }
+Plug 'tpope/vim-rsi'
 
 call plug#end()            " required
 
@@ -56,18 +58,14 @@ nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
 set mouse=a
+set ttymouse=sgr
 
 " include jsx in .js files
 let g:jsx_ext_required = 0
 
 " jk is escape
 inoremap jk <esc>
-
-set clipboard+=unnamed
-set completeopt-=preview
-if $TMUX == ''
-    set clipboard+=unnamed
-endif
+set clipboard=unnamedplus
 
 """""""""""""""""""""""""""""""""""
 "
@@ -95,8 +93,8 @@ let g:lightline = {
 " Configuring Nerd Tree
 "
 """""""""""""""""""""""""""""""""""
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 map <C-n> :NERDTreeToggle<CR>
 map <Leader>n :NERDTreeFocus<CR>
