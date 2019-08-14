@@ -27,7 +27,9 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'  }
 
 " Themes
-Plug 'dracula/vim'
+" Plug 'dracula/vim'
+Plug 'Rigellute/rigel'
+Plug 'morhetz/gruvbox'
 
 Plug 'sheerun/vim-polyglot'
 let g:fzf_install = 'yes | ./install'
@@ -83,10 +85,9 @@ set splitright
 """""""""""""""""""""""""""""""""""
 set laststatus=2
 set noshowmode
+let g:lightline = { 'colorscheme': 'gruvbox'  }
 
-let g:lightline = {
-      \ 'colorscheme': 'dracula',
-      \ }
+"let g:gruvbox_contrast_dark = 'hard'
 
 """""""""""""""""""""""""""""""""""
 "
@@ -117,7 +118,8 @@ set rtp+=/usr/local/opt/fzf
 "
 """""""""""""""""""""""""""""""""""
 syntax on
-colorscheme dracula
+colorscheme gruvbox
+set background=dark    " Setting dark mode"
 highlight Normal ctermbg=None
 
 """""""""""""""""""""""""""""""""""

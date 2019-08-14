@@ -56,7 +56,7 @@ fi
 if [[ ! -x "$(command -v node)" ]]; then
   echo "Node not not found, installing node"
   echo "Running node install script"
-  curl -sL https://deb.nodesource.com/setup_12.x | -E bash -
+  curl -sL https://deb.nodesource.com/setup_12.x | bash - &>/dev/null
   echo "Installing node"
   apt install nodejs -y &>/dev/null
 else

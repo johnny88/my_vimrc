@@ -2,7 +2,6 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"  ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-alias shutdown='wsl.exe --shutdown'
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 export PATH="$PATH:`yarn global bin`"
 
