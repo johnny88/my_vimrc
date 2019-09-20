@@ -35,14 +35,21 @@ Plug 'sheerun/vim-polyglot'
 let g:fzf_install = 'yes | ./install'
 Plug 'junegunn/fzf', { 'do': g:fzf_install }
 Plug 'junegunn/fzf.vim'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'tpope/vim-sensible'
 Plug 'jiangmiao/auto-pairs'
-Plug 'ycm-core/YouCompleteMe', { 'for': 'javascript', 'do': './install.py --ts-completer' }
+"Plug 'ycm-core/YouCompleteMe', { 'for': 'javascript', 'do': './install.py --ts-completer' }
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'tpope/vim-rsi'
 
 call plug#end()            " required
 
+let g:deoplete#enable_at_startup = 1
+"call deoplete#custom#option('sources', {
+"\ '_': ['ale'],
+"\})
 """""""""""""""""""""""""""""""""""
 "
 " Some general config
@@ -61,13 +68,19 @@ set pastetoggle=<F2>
 set showmode
 set mouse=a
 set ttymouse=sgr
+set backupcopy=yes
 
 " include jsx in .js files
 let g:jsx_ext_required = 0
 
 " jk is escape
 inoremap jk <esc>
-set clipboard=unnamedplus
+
+if has('linux')
+  set clipboard=unnamedplus
+elseif has('macunix') 
+  set clipboard=unnamed
+endif
 
 """""""""""""""""""""""""""""""""""
 "
@@ -128,6 +141,16 @@ highlight Normal ctermbg=None
 "
 """""""""""""""""""""""""""""""""""
 let g:ale_go_gofmt_options = '-w'
-let g:ale_fixers = {'javascript': ['eslint'], 'go': ['gofmt', 'goimports']}
-let g:ale_linters = {'javascript': ['eslint'], 'go': ['gopls']}
+let g:ale_fixers = {'typescript': ['eslint'], 'javascript': ['eslint'], 'go': ['gofmt', 'goimports']}
+let g:ale_linters = {'typescript': ['eslint'], 'javascript': ['eslint'], 'go': ['gopls']}
 let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 1
+let g:ale_set_loclist = 1
+let g:ale_set_quickfix = 0
+
+"""""""""""""""""""""""""""""""""""
+"
+" Configuring You Complete Me
+"
+"""""""""""""""""""""""""""""""""""
+"nnoremap <leader>jd :YcmCompleter GoTo<CR>
