@@ -53,7 +53,7 @@ else
 fi
 
 # Install nodejs
-if [[ ! -x "$(command -v node)" ]]; then
+if [[ ! -x "$(command -v npm)" ]]; then
   echo "Node not not found, installing node"
   echo "Running node install script"
   curl -sL https://deb.nodesource.com/setup_12.x | bash - &>/dev/null
@@ -76,6 +76,8 @@ fi
 # Install tpm
 if [[ ! -d ${HOME}/.tmux/plugins/tpm ]]; then
   echo "Tpm not found, installing tpm"
+  echo "Installing dependencies"
+  apt install wl-clipboard
   echo "Cloning tpm repo"
   git clone https://github.com/tmux-plugins/tpm ${HOME}/.tmux/plugins/tpm &>/dev/null
   echo "Installing plugins"
@@ -87,6 +89,9 @@ fi
 # Install vim plug
 if [[ ! -f ${HOME}/.vim/autoload/plug.vim ]]; then
   echo "Vim plug not found, installing vim plug"
+  echo "Installing dependencies"
+  apt install python3-pip
+  pip3 install --user pynvim
   echo "Downloading vim plug"
   curl -fLo ${HOME}/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim &>/dev/null
