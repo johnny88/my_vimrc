@@ -8,7 +8,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
-
+"
 """""""""""""""""""""""""""""""""""
 "
 " Setting up plug
@@ -19,32 +19,33 @@ set nocompatible              " be iMproved, required
 call plug#begin('~/.vim/plugged')
 
 " Plugins
-Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
 Plug 'airblade/vim-gitgutter'
-Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-sensible'
+
+Plug 'vim-airline/vim-airline'
+Plug 'edkolev/tmuxline.vim'
+
+" Language Plugins
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'  }
-
-" Themes
-Plug 'Rigellute/rigel'
-Plug 'morhetz/gruvbox'
-
 Plug 'sheerun/vim-polyglot'
+Plug 'hashivim/vim-terraform'
+
 let g:fzf_install = 'yes | ./install'
 Plug 'junegunn/fzf', { 'do': g:fzf_install }
 Plug 'junegunn/fzf.vim'
+
+" Completion
+Plug 'juliosueiras/vim-terraform-completion'
+Plug 'zxqfl/tabnine-vim'
+
+" Linting
 Plug 'dense-analysis/ale'
-Plug 'tpope/vim-sensible'
-Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-rsi'
 
-call plug#end()            " required
+Plug 'morhetz/gruvbox'
+call plug#end()
 
-"let g:deoplete#enable_at_startup = 1
-"call deoplete#custom#option('sources', {
-"\ '_': ['ale'],
-"\})
 """""""""""""""""""""""""""""""""""
 "
 " Some general config
@@ -83,9 +84,12 @@ inoremap jk <esc>
 
 if has('linux')
   set clipboard=unnamedplus
-elseif has('macunix') 
+elseif has('macunix')
   set clipboard=unnamed
 endif
+
+syntax on
+colorscheme gruvbox
 
 """""""""""""""""""""""""""""""""""
 "
@@ -95,17 +99,6 @@ endif
 set hidden
 set splitbelow
 set splitright
-
-"""""""""""""""""""""""""""""""""""
-"
-" Configuring lightline
-"
-"""""""""""""""""""""""""""""""""""
-set laststatus=2
-set noshowmode
-let g:lightline = { 'colorscheme': 'gruvbox'  }
-
-"let g:gruvbox_contrast_dark = 'hard'
 
 """""""""""""""""""""""""""""""""""
 "
@@ -130,23 +123,52 @@ set rtp+=/usr/local/opt/fzf
 
 """""""""""""""""""""""""""""""""""
 "
-" Turning on theme
+" Terraform config
 "
 """""""""""""""""""""""""""""""""""
-syntax on
-colorscheme gruvbox
-set background=dark    " Setting dark mode"
-highlight Normal ctermbg=None
+let g:terraform_fmt_on_save=1
+
+"""""""""""""""""""""""""""""""""""
+"
+" Nerd commenter config
+"
+"""""""""""""""""""""""""""""""""""
+let g:NERDSpaceDelims = 1
+
+"""""""""""""""""""""""""""""""""""
+"
+" Go vim config
+"
+"""""""""""""""""""""""""""""""""""
+" Edit it Improvements
+" https://github.com/fatih/vim-go/wiki/Tutorial#vimrc-improvements-3
+let g:go_fmt_command = "goimports"
+
+" Check it
+" https://github.com/fatih/vim-go/wiki/Tutorial#check-it
+let g:go_metalinter_autosave = 0
+
+" Understand it
+" https://github.com/fatih/vim-go/wiki/Tutorial#identifier-resolution
+autocmd FileType go nmap <Leader>i <Plug>(go-info)
+let g:go_list_height = 0
 
 """""""""""""""""""""""""""""""""""
 "
 " Configuring Ale
 "
 """""""""""""""""""""""""""""""""""
-let g:ale_go_gofmt_options = '-w'
-let g:ale_fixers = {'typescript': ['eslint'], 'javascript': ['eslint'], 'go': ['gofmt', 'goimports']}
-let g:ale_linters = {'typescript': ['tsserver', 'eslint'], 'javascript': ['eslint'], 'go': ['gopls']}
+let g:ale_fixers = {
+  \ 'typescript': ['eslint'],
+  \ 'javascript': ['eslint'],
+\}
+
+let g:ale_linters = {
+  \'typescript': ['tsserver', 'eslint'],
+  \'javascript': ['eslint'],
+  \ 'go': ['golint', 'govet']
+\}
+
 let g:ale_fix_on_save = 1
-let g:ale_completion_enabled = 1
 let g:ale_set_loclist = 1
 let g:ale_set_quickfix = 0

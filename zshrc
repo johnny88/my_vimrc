@@ -11,10 +11,6 @@ if [[ "$( uname -s )" == "Darwin" ]]; then
   alias vim='mvim -v' 
 fi
 
-if type nvim > /dev/null 2>&1; then
-  alias vim='nvim'
-fi
-
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
@@ -40,7 +36,12 @@ load-nvmrc
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export DOCKER_BUILDKIT=1
-
+export GO111MODULE=on
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export AWS_SDK_LOAD_CONFIG=true
+export GOOGLE_APPLICATION_CREDENTIALS="${HOME}/.config/wiggles-service-account.json"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
+
+export COLORTERM=truecolor
