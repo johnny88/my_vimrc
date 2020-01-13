@@ -23,9 +23,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-sensible'
-
+" Plug 'edkolev/tmuxline.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'edkolev/tmuxline.vim'
 
 " Language Plugins
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'  }
@@ -37,7 +36,6 @@ Plug 'junegunn/fzf', { 'do': g:fzf_install }
 Plug 'junegunn/fzf.vim'
 
 " Completion
-Plug 'juliosueiras/vim-terraform-completion'
 Plug 'zxqfl/tabnine-vim'
 
 " Linting
@@ -89,8 +87,18 @@ elseif has('macunix')
 endif
 
 syntax on
+set background=dark
 colorscheme gruvbox
+let g:jsx_ext_required = 0 
+augroup FiletypeGroup
+    autocmd!
+    au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+augroup END
 
+" map leader x to close extra windows
+noremap <Leader>x :ccl <bar> lcl<CR>
+" remove scratch preview
+set completeopt-=preview
 """""""""""""""""""""""""""""""""""
 "
 " Movement configuration
