@@ -99,6 +99,8 @@ augroup END
 noremap <Leader>x :ccl <bar> lcl<CR>
 " remove scratch preview
 set completeopt-=preview
+
+hi Normal ctermbg=none
 """""""""""""""""""""""""""""""""""
 "
 " Movement configuration
