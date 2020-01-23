@@ -86,7 +86,6 @@ elseif has('macunix')
   set clipboard=unnamed
 endif
 
-syntax on
 set background=dark
 colorscheme gruvbox
 
