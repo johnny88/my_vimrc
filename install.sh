@@ -37,21 +37,6 @@ else
   echo "Zsh already installed... skipping"
 fi
 
-# Install prezto for zsh
-if [[ ! -d ${HOME}/.zprezto ]]; then
-  echo "Zsh prezto not found, installing zsh prezto"
-  echo "Cloning prezto repo"
-  git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto" &>/dev/null
-
-  echo "Copying necessary files"
-  for file in ${HOME}/.zprezto/runcoms/!(README.md); do
-    ln -s $file $HOME/.${file##*/} &>/dev/null
-  done
-  echo "Installing prezto done"
-else
-  echo "Zsh prezto already installed... skipping"
-fi
-
 # Install nodejs
 if [[ ! -x "$(command -v npm)" ]]; then
   echo "Node not not found, installing node"
