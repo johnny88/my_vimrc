@@ -89,11 +89,6 @@ endif
 syntax on
 set background=dark
 colorscheme gruvbox
-let g:jsx_ext_required = 0 
-augroup FiletypeGroup
-    autocmd!
-    au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
-augroup END
 
 " map leader x to close extra windows
 noremap <Leader>x :ccl <bar> lcl<CR>
