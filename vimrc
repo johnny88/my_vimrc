@@ -23,8 +23,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-sensible'
-" Plug 'edkolev/tmuxline.vim'
 Plug 'vim-airline/vim-airline'
+Plug 'morhetz/gruvbox'
 
 " Language Plugins
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'  }
@@ -41,7 +41,6 @@ Plug 'zxqfl/tabnine-vim'
 " Linting
 Plug 'dense-analysis/ale'
 
-Plug 'morhetz/gruvbox'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""
