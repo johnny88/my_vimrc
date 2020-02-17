@@ -14,12 +14,11 @@ export NVM_AUTO_USE=true
 
 ZSH_THEME="simple"
 
-plugins=(git zsh-nvm)
+plugins=(git zsh-nvm tmux)
 
 source $ZSH/oh-my-zsh.sh
 
 alias vim="nvim"
-alias tmux='tmux -u'
 
 export DOCKER_BUILDKIT=1
 
