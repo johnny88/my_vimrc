@@ -12,7 +12,7 @@ export ZSH="$HOME/.oh-my-zsh"
 export NVM_LAZY_LOAD=true
 export NVM_AUTO_USE=true
 
-ZSH_THEME="simple"
+ZSH_THEME="robbyrussell"
 
 plugins=(git zsh-nvm tmux)
 
