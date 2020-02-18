@@ -12,9 +12,9 @@ export ZSH="$HOME/.oh-my-zsh"
 export NVM_LAZY_LOAD=true
 export NVM_AUTO_USE=true
 
-ZSH_THEME="simple"
+ZSH_THEME="robbyrussell"
 
-plugins=(git zsh-nvm tmux)
+plugins=(git zsh-nvm)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -25,3 +25,4 @@ export DOCKER_BUILDKIT=1
 export AWS_SDK_LOAD_CONFIG=true
 export COLORTERM=truecolor
 export BROWSER=none
+export LC_CTYPE="UTF-8"
